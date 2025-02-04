@@ -9,6 +9,7 @@ import 'dotenv/config';
 import { usersRoutes } from './endpoints/users/users.routes';
 
 import { responseHandler } from './middlewares/response';
+import { authRoutes } from './endpoints/auth/auth.routes';
 
 // init
 const app = new koa();
@@ -36,5 +37,6 @@ app.use(responseHandler);
 
 // Load routes
 usersRoutes(app);
+authRoutes(app);
 
 export default app;
