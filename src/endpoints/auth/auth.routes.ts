@@ -1,6 +1,6 @@
 import Application from 'koa';
 import Router from 'koa-router';
-import { signUp } from './auth.controller';
+import { signupUser, loginUser, logoutUser } from './auth.controller';
 
 export const authRoutes = (app: Application) => {
     const authRoutes = new Router();
@@ -9,7 +9,9 @@ export const authRoutes = (app: Application) => {
     // GET
 
     // POST
-    authRoutes.post('/signup', signUp);
+    authRoutes.post('/signup', signupUser);
+    authRoutes.post('/login', loginUser);
+    authRoutes.post('/logout', logoutUser);
 
     // PUT
 
