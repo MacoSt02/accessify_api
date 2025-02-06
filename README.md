@@ -21,7 +21,7 @@ Accessify API és un servei desenvolupat amb Node.js, TypeScript i KOA.js per ge
 
 1. Clonar el repositori:
    ```sh
-   git clone https://github.com/el-teu-usuari/accessify_api.git
+   git clone https://github.com/MacoSt02/accessify_api.git
    cd accessify_api
    ```
 
