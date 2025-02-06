@@ -33,11 +33,14 @@ Accessify API és un servei desenvolupat amb Node.js, TypeScript i KOA.js per ge
 3. Configurar les variables d'entorn:
    Crea un fitxer `.env` a la raita del projecte i afegeix-hi la configuració necessària:
    ```env
+   PORT=3030
+   NODE_ENV=dev
+
    DB_HOST=localhost
    DB_USER=usuari
    DB_PASSWORD=contrasenya
    DB_NAME=accessify_db
-   PORT=3000
+   
    JWT_SECRET=clau_secreta
    ```
 
