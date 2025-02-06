@@ -7,11 +7,10 @@ Accessify API és un servei desenvolupat amb Node.js, TypeScript i KOA.js per ge
 - Gestor d'usuaris amb autenticació.
 - Administració de rols i permisos.
 - API RESTful amb respostes estructurades.
-- Desenvolupat amb TypeScript per una millor mantenibilitat.
 - Middleware per a validació i gestió d'errors.
 - Gestor de tokens d'accés mitjançant JWT (JSON Web Tokens).
 
-## Requeriments
+## Requisits
 
 - Node.js 18+
 - MySQL 8+
@@ -31,7 +30,7 @@ Accessify API és un servei desenvolupat amb Node.js, TypeScript i KOA.js per ge
    ```
 
 3. Configurar les variables d'entorn:
-   Crea un fitxer `.env` a la raita del projecte i afegeix-hi la configuració necessària:
+   Crea un fitxer `.env` a l'arrel del projecte i afegeix-hi la configuració necessària:
    ```env
    PORT=3030
    NODE_ENV=dev
@@ -45,36 +44,25 @@ Accessify API és un servei desenvolupat amb Node.js, TypeScript i KOA.js per ge
    ```
 
 4. Instal·lar la base de dades:
-   Importa i executa l'script `accessify_db.sql` utilitzant un gestor de bases de dades com MySQL Workbench o la línia de comandes. L'script es troba dins la carpeta `sql_scripts` a l'arrel del projecte.
+   Importa i executa l'script `accessify_db.sql` utilitzant un gestor de bases de dades com MySQL Workbench DBeaver o la línia d'ordres. L'script es troba dins la carpeta `sql_scripts` a l'arrel del projecte.
    ```sh
    mysql -u usuari -p accessify_db < sql_script/accessify_db.sql
    ```
 
-5. Executar migracions de base de dades (si s'utilitza un ORM com TypeORM o Sequelize):
+6. Iniciar el servei:
    ```sh
-   npm run migrate
-   ```
-
-6. Iniciar el servidor:
-   ```sh
-   npm run dev
+   npm run start:dev
    ```
 
 ## Rutes Principals
 
-- `POST /api/auth/login` - Autenticació d'usuaris.
-- `GET /api/users` - Llistar usuaris.
-- `POST /api/users` - Crear un nou usuari.
-- `GET /api/roles` - Llistar rols.
-- `POST /api/roles` - Crear un nou rol.
-- `GET /api/permissions` - Llistar permisos.
-- `POST /api/permissions` - Assignar permisos a rols.
-
-## Contribuir
-
-Les contribucions són benvingudes! Fes un `fork` del repositori i envia una `pull request`.
+- `POST /signup` - Creació d'usuaris.
+- `POST /login` - Iniciar sessió.
+- `POST /logout` - Tancar sessió.
+- `GET /users` - Llistar usuaris.
+- `GET /roles` - Llistar rols.
+- `GET /permissions` - Llistar permisos.
 
 ## Llicència
 
 Aquest projecte està llicenciat sota la [MIT License].
-
