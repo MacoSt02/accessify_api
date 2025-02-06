@@ -72,11 +72,14 @@ export const loginUser = async (ctx: Context) => {
             };
             return;
         }
+        const permissions = await authRepository.getUserPermissions(user.user_id);
 
         const token = jwt.sign(
             {
                 user_id: user.user_id,
                 email: user.email,
+                role: user.role_id,
+                permissions: permissions,
             },
             process.env.JWT_SECRET!,
             { expiresIn: '24h' },

@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS `accessify`;
-CREATE DATABASE `accessify`;
-USE `accessify`;
+DROP DATABASE IF EXISTS `accessify_db`;
+CREATE DATABASE `accessify_db`;
+USE `accessify_db`;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -50,15 +50,15 @@ CREATE TABLE `user_roles` (
   FOREIGN KEY (`role_id`) REFERENCES `roles`(`role_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO accessify.users(email, password) VALUES
+INSERT INTO accessify_db.users(email, password) VALUES
 ('admin@accessify.cat', '$2a$12$jmVh70142IyDKusHmIxZq.nEYb91EJvWpCPOa/MJ1afKXia7nyTq2'),
 ('user@accessify.cat', '$2a$12$UeWYghlvxRrUhjwCDod7COBim3epNIo7m3Eq0yy9WjmubZh/fJM.i');
 
-INSERT INTO accessify.roles(role_name, role_description) VALUES
+INSERT INTO accessify_db.roles(role_name, role_description) VALUES
 ('admin', 'Role for admin users'),
 ('user', 'Role for common users');
 
-INSERT INTO accessify.permissions(permission_name, permission_description) VALUES
+INSERT INTO accessify_db.permissions(permission_name, permission_description) VALUES
 ('route:home:view', 'Access and view the home page of the application'),
 ('route:dashboard:view', 'Access and view the dashboard page for overview and analytics'),
 ('route:users:view', 'Access and view the users management page to manage user accounts'),
@@ -69,7 +69,7 @@ INSERT INTO accessify.permissions(permission_name, permission_description) VALUE
 ('route:files:view', 'Access and view the file management page to upload and download files'),
 ('route:logs:view', 'Access and view the logs page to review system activity and logs');
 
-INSERT INTO accessify.role_permissions(role_id, permission_id) VALUES
+INSERT INTO accessify_db.role_permissions(role_id, permission_id) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
@@ -85,6 +85,6 @@ INSERT INTO accessify.role_permissions(role_id, permission_id) VALUES
 (2, 7),
 (2, 8);
 
-INSERT INTO accessify.user_roles(user_id, role_id) VALUES
+INSERT INTO accessify_db.user_roles(user_id, role_id) VALUES
 (1, 1),
 (2, 2);
