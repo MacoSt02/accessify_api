@@ -6,10 +6,12 @@ import mount from 'koa-mount';
 import auth from 'koa-basic-auth';
 import 'dotenv/config';
 
+import { authRoutes } from './endpoints/auth/auth.routes';
 import { usersRoutes } from './endpoints/users/users.routes';
+import { rolesRoutes } from './endpoints/roles/roles.routes';
+import { permissionsRoutes } from './endpoints/permissions/permissions.routes';
 
 import { responseHandler } from './middlewares/response';
-import { authRoutes } from './endpoints/auth/auth.routes';
 
 // init
 const app = new koa();
@@ -36,7 +38,9 @@ app.use(
 app.use(responseHandler);
 
 // Load routes
-usersRoutes(app);
 authRoutes(app);
+usersRoutes(app);
+rolesRoutes(app);
+permissionsRoutes(app);
 
 export default app;

@@ -1,12 +1,12 @@
 import { Context } from 'koa';
 import bcrypt from 'bcryptjs';
 import * as authRepository from './auth.repository';
-import { UserBodyRequest, UserBody } from './auth.model';
+import { SignupUsersBody, UsersBody } from './auth.model';
 import jwt from 'jsonwebtoken';
 
 export const signupUser = async (ctx: Context) => {
     try {
-        const user = ctx.request.body as UserBodyRequest;
+        const user = ctx.request.body as SignupUsersBody;
 
         const userExists = await authRepository.getUserByEmail(user.email);
         if (Array.isArray(userExists) && userExists.length > 0) {
@@ -40,7 +40,7 @@ export const signupUser = async (ctx: Context) => {
 
 export const loginUser = async (ctx: Context) => {
     try {
-        const { email, password } = ctx.request.body as UserBodyRequest;
+        const { email, password } = ctx.request.body as SignupUsersBody;
         if (!email || !password) {
             ctx.status = 400;
             ctx.body = {
@@ -51,7 +51,7 @@ export const loginUser = async (ctx: Context) => {
             return;
         }
 
-        const user = await authRepository.getUserByEmail(email) as unknown as UserBody | undefined;
+        const user = await authRepository.getUserByEmail(email) as unknown as UsersBody | undefined;
         if (!user) {
             ctx.status = 401;
             ctx.body = {

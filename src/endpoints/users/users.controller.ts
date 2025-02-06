@@ -3,7 +3,8 @@ import * as usersRepository from './users.repository';
 
 export const getUsers = async (ctx: Context) => {
     try {
-        const users = await usersRepository.getUsers();
+        const search = ctx.query.search as string;
+        const users = await usersRepository.getUsers(search);
         if (Array.isArray(users) && users.length > 0) {
             ctx.status = 200;
             ctx.body = {
@@ -24,6 +25,24 @@ export const getUsers = async (ctx: Context) => {
         ctx.body = {
             success: false,
             message: 'Error retrieving users: ' + e,
+            code: 'INTERNAL_SERVER_ERROR',
+        };
+    }
+};
+
+export const deleteUser = async (ctx: Context) => {
+    try {
+        await usersRepository.deleteUser(Number(ctx.params.user_id));
+        ctx.status = 200;
+        ctx.body = {
+            success: true,
+            message: 'User deleted successfully',
+        };
+    } catch (e) {
+        ctx.status = 500;
+        ctx.body = {
+            success: false,
+            error: 'Error deleting user: ' + e,
             code: 'INTERNAL_SERVER_ERROR',
         };
     }

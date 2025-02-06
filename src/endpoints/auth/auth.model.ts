@@ -1,9 +1,9 @@
-export type UserBodyRequest = {
+export type SignupUsersBody = {
     email: string;
     password: string;
 };
 
-export type UserBody = {
+export type UsersBody = {
     user_id: number;
     email: string;
     password: string;
