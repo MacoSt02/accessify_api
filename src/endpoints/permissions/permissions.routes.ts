@@ -1,18 +1,18 @@
 import Application from 'koa';
 import Router from 'koa-router';
 import { getPermissions, postPermissions, putPermission, deletePermission } from './permissions.controller';
-import { auth } from '../../middlewares/auth';
+import { authMiddleware } from '../../middlewares/authMiddleware';
 
 export const permissionsRoutes = (app: Application) => {
     const permissionsRoutes = new Router();
     permissionsRoutes.prefix('/permissions');
     // GET
-    permissionsRoutes.get('/', auth, getPermissions);
+    permissionsRoutes.get('/', authMiddleware, getPermissions);
     // POST
-    permissionsRoutes.post('/', auth, postPermissions);
+    permissionsRoutes.post('/', authMiddleware, postPermissions);
     // PUT
-    permissionsRoutes.put('/:permission_id', auth, putPermission);
+    permissionsRoutes.put('/:permission_id', authMiddleware, putPermission);
     // DELETE
-    permissionsRoutes.delete('/:permission_id', auth, deletePermission);
+    permissionsRoutes.delete('/:permission_id', authMiddleware, deletePermission);
     app.use(permissionsRoutes.routes());
 };

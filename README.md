@@ -44,7 +44,7 @@ Accessify API és un servei desenvolupat amb Node.js, TypeScript i KOA.js per ge
    ```
 
 4. Instal·lar la base de dades:
-   Importa i executa l'script `accessify_db.sql` utilitzant un gestor de bases de dades com MySQL Workbench DBeaver o la línia d'ordres. L'script es troba dins la carpeta `sql_scripts` a l'arrel del projecte.
+   Importa i executa l'script `accessify_db.sql` utilitzant un gestor de bases de dades com MySQL Workbench, DBeaver o la línia d'ordres. L'script es troba dins la carpeta `sql_scripts` a l'arrel del projecte.
    ```sh
    mysql -u usuari -p accessify_db < sql_script/accessify_db.sql
    ```

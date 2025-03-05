@@ -16,7 +16,7 @@ export const getUserPermissions = async (user_id: number) => {
             LOWER(SUBSTRING(SUBSTRING_INDEX(SUBSTRING_INDEX(p.permission_name, ':', -2), ':', -1), 2)),
             UPPER(LEFT(SUBSTRING_INDEX(SUBSTRING_INDEX(p.permission_name, ':', -2), ':', 1), 1)),
             LOWER(SUBSTRING(SUBSTRING_INDEX(SUBSTRING_INDEX(p.permission_name, ':', -2), ':', 1), 2))
-        ) AS permission_name 
+        ) AS permission_name
         FROM permissions p
         JOIN role_permissions rp ON p.permission_id = rp.permission_id
         JOIN roles r ON rp.role_id = r.role_id

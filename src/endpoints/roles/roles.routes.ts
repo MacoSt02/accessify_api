@@ -1,18 +1,18 @@
 import Application from 'koa';
 import Router from 'koa-router';
 import { getRoles, postRole, putRole, deleteRole } from './roles.controller';
-import { auth } from '../../middlewares/auth';
+import { authMiddleware } from '../../middlewares/authMiddleware';
 
 export const rolesRoutes = (app: Application) => {
     const rolesRoutes = new Router();
     rolesRoutes.prefix('/roles');
     // GET
-    rolesRoutes.get('/', auth, getRoles);
+    rolesRoutes.get('/', authMiddleware, getRoles);
     // POST
-    rolesRoutes.post('/', auth, postRole);
+    rolesRoutes.post('/', authMiddleware, postRole);
     // PUT
-    rolesRoutes.put('/:role_id', auth, putRole);
+    rolesRoutes.put('/:role_id', authMiddleware, putRole);
     // DELETE
-    rolesRoutes.delete('/:role_id', auth, deleteRole);
+    rolesRoutes.delete('/:role_id', authMiddleware, deleteRole);
     app.use(rolesRoutes.routes());
 };
