@@ -1,7 +1,7 @@
 import { Context, Next } from 'koa';
 import jwt from 'jsonwebtoken';
 
-export const authMiddleware = async (ctx: Context, next: Next) => {
+export const auth = async (ctx: Context, next: Next) => {
     const token = ctx.cookies.get('authToken');
     if (!token) {
         ctx.status = 401;

@@ -11,9 +11,9 @@ export class ApiServer {
     listen = async () => {
         const PORT = process.env.PORT || 3030;
         this.server = app.listen(PORT, async () => {
-            console.log(`When it's ${new Date().toLocaleString()} we are getting ready`);
-            console.log(`Starting in ${process.env.NODE_ENV} mode`);
-            console.log(`Listening on ${PORT}`);
+            console.info(`When it's ${new Date().toLocaleString()} we are getting ready`);
+            console.info(`Starting in ${process.env.NODE_ENV} mode`);
+            console.info(`Listening on ${PORT}`);
         });
     };
 
@@ -24,4 +24,4 @@ export class ApiServer {
     address = () => {
         return this.server.address() as AddressInfo;
     };
-}
+};
