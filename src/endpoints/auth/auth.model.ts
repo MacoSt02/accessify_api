@@ -8,4 +8,5 @@ export type UsersBody = {
     email: string;
     password: string;
     role_id: number;
+    role_name: string;
 };

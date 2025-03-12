@@ -60,14 +60,13 @@ INSERT INTO accessify_db.roles(role_name, role_description) VALUES
 
 INSERT INTO accessify_db.permissions(permission_name, permission_description) VALUES
 ('route:home:view', 'Access and view the home page of the application'),
-('route:dashboard:view', 'Access and view the dashboard page for overview and analytics'),
+('route:profile:view', 'Access and view the user profile page to view and edit personal information'),
+('route:settings:view', 'Access and view the settings page to configure application preferences'),
 ('route:users:view', 'Access and view the users management page to manage user accounts'),
 ('route:roles:view', 'Access and view the roles management page to manage user roles'),
 ('route:permissions:view', 'Access and view the permissions management page to manage permissions'),
-('route:settings:view', 'Access and view the settings page to configure application preferences'),
-('route:profile:view', 'Access and view the user profile page to view and edit personal information'),
-('route:files:view', 'Access and view the file management page to upload and download files'),
-('route:logs:view', 'Access and view the logs page to review system activity and logs');
+('route:logs:view', 'Access and view the logs page to review system activity and logs'),
+('route:files:view', 'Access and view the file management page to upload and download files');
 
 INSERT INTO accessify_db.role_permissions(role_id, permission_id) VALUES
 (1, 1),
@@ -78,11 +77,9 @@ INSERT INTO accessify_db.role_permissions(role_id, permission_id) VALUES
 (1, 6),
 (1, 7),
 (1, 8),
-(1, 9),
 (2, 1),
 (2, 2),
-(2, 6),
-(2, 7),
+(2, 3),
 (2, 8);
 
 INSERT INTO accessify_db.user_roles(user_id, role_id) VALUES

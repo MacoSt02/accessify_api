@@ -4,7 +4,7 @@ import { SignupUsersBody, UsersBody } from './auth.model';
 
 export const getUserByEmail = async (email: string) => {
     const pool = getPool();
-    const [rows] = await pool.query<RowDataPacket[]>('SELECT u.user_id, u.email, u.password, ur.role_id FROM users u JOIN user_roles ur ON u.user_id = ur.user_id WHERE u.email = ?;', [email]);
+    const [rows] = await pool.query<RowDataPacket[]>('SELECT u.user_id, u.email, u.password, ur.role_id, r.role_name FROM users u JOIN user_roles ur ON u.user_id = ur.user_id JOIN roles r on ur.role_id = r.role_id WHERE u.email = ?;', [email]);
     return rows.length > 0 ? (rows[0] as UsersBody) : null;
 };
 
