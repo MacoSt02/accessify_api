@@ -112,6 +112,7 @@ export const loginUser = async (ctx: Context) => {
             },
             process.env.JWT_SECRET!,
             { expiresIn: '24h' },
+            // { expiresIn: '1m' }, // For testing
         );
 
         ctx.cookies.set('authToken', token, {
@@ -119,6 +120,7 @@ export const loginUser = async (ctx: Context) => {
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',
             maxAge: 24 * 3600 * 1000,
+            // maxAge: 60 * 1000, // For testing
         });
 
         ctx.status = 200;
