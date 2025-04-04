@@ -29,6 +29,6 @@ export const getUserPermissions = async (user_id: number) => {
 
 export const signupUser = async (user: SignupUsersBody) => {
     const pool = getPool();
-    const [rows] = await pool.query('INSERT INTO users (email, password) VALUES (?, ?);', [user.email, user.password]);
+    const [rows] = await pool.query('INSERT INTO users (name, email, password) VALUES (?, ?, ?);', [user.name, user.email, user.password]);
     return rows;
 };

@@ -5,6 +5,7 @@ USE `accessify_db`;
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `user_id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL UNIQUE,
   `password` VARCHAR(255) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -50,9 +51,9 @@ CREATE TABLE `user_roles` (
   FOREIGN KEY (`role_id`) REFERENCES `roles`(`role_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO accessify_db.users(email, password) VALUES
-('admin@accessify.cat', '$2a$12$jmVh70142IyDKusHmIxZq.nEYb91EJvWpCPOa/MJ1afKXia7nyTq2'),
-('user@accessify.cat', '$2a$12$UeWYghlvxRrUhjwCDod7COBim3epNIo7m3Eq0yy9WjmubZh/fJM.i');
+INSERT INTO accessify_db.users(name, email, password) VALUES
+('Admin', 'admin@accessify.cat', '$2a$12$jmVh70142IyDKusHmIxZq.nEYb91EJvWpCPOa/MJ1afKXia7nyTq2'),
+('User', 'user@accessify.cat', '$2a$12$UeWYghlvxRrUhjwCDod7COBim3epNIo7m3Eq0yy9WjmubZh/fJM.i');
 
 INSERT INTO accessify_db.roles(role_name, role_description) VALUES
 ('admin', 'Role for admin users'),
