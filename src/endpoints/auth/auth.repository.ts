@@ -1,10 +1,10 @@
-import { RowDataPacket } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import { getPool } from '../../database/connect';
-import { SignupUsersBody, UsersBody } from './auth.model';
+import { RolesBody, SignupUsersBody, UsersBody } from './auth.model';
 
 export const getUserByEmail = async (email: string) => {
     const pool = getPool();
-    const [rows] = await pool.query<RowDataPacket[]>('SELECT u.user_id, u.email, u.password, ur.role_id, r.role_name FROM users u JOIN user_roles ur ON u.user_id = ur.user_id JOIN roles r on ur.role_id = r.role_id WHERE u.email = ?;', [email]);
+    const [rows] = await pool.query<RowDataPacket[]>('SELECT u.user_id, u.name, u.email, u.password, ur.role_id, r.role_name FROM users u LEFT JOIN user_roles ur ON u.user_id = ur.user_id LEFT JOIN roles r on ur.role_id = r.role_id WHERE u.email LIKE ?;', [email]);
     return rows.length > 0 ? (rows[0] as UsersBody) : null;
 };
 
@@ -29,6 +29,8 @@ export const getUserPermissions = async (user_id: number) => {
 
 export const signupUser = async (user: SignupUsersBody) => {
     const pool = getPool();
-    const [rows] = await pool.query('INSERT INTO users (name, email, password) VALUES (?, ?, ?);', [user.name, user.email, user.password]);
+    const [rows] = await pool.query<ResultSetHeader>('INSERT INTO users (name, email, password) VALUES (?, ?, ?);', [user.name, user.email, user.password]);
+    const [roleRows] = await pool.query<RolesBody[]>('SELECT role_id FROM roles WHERE role_name LIKE ?;',['user']);
+    await pool.query('INSERT INTO user_roles (user_id, role_id) VALUES (?, ?);', [rows.insertId, roleRows[0].role_id]);
     return rows;
 };

@@ -91,6 +91,15 @@ export const loginUser = async (ctx: Context) => {
             };
             return;
         }
+        if (!user.role_id) {
+            ctx.status = 401;
+            ctx.body = {
+                success: false,
+                error: 'User does not have a role',
+                code: 'USER_NO_ROLE',
+            };
+            return;
+        }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {

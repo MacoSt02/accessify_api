@@ -1,3 +1,5 @@
+import { RowDataPacket } from 'mysql2';
+
 export type SignupUsersBody = {
     name: string,
     email: string;
@@ -11,3 +13,7 @@ export type UsersBody = {
     role_id: number;
     role_name: string;
 };
+
+export type RolesBody = {
+    role_id: number;
+} & RowDataPacket;
